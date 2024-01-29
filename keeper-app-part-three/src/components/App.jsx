@@ -1,38 +1,50 @@
 import React, { useState } from "react";
+import TodoItem from "./todoItem";
+import InputArea from "./InputArea";
 
 function App() {
-  const [inputValue, setInputValue] = useState('');
   const [notes, setNotes] = useState([]) 
 
-  function getValue(e){
-    let {value} = e.target;
-    setInputValue(value)
-  }
-
-  function addClicked(){
-    setNotes([...notes,inputValue])
+  function addClicked(inputValue, setInputValue){
+    setNotes(prevItems => [...prevItems,inputValue])
     setInputValue('')
   }
+
+  function deleteFunc(id){
+    setNotes((prevItems) =>{
+      return (prevItems.filter((value,index) =>{
+        return index !== id
+      }))
+    })
+    console.log('delete clicked '+ id)
+    console.log(notes);
+  }
+
 
 
   return (
     <div className="container">
+
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input type="text" onChange={getValue} value={inputValue}/>
-        <button onClick={addClicked}>
-          <span>Add</span>
-        </button>
-      </div>
+
+      <InputArea addClickedFunc = {addClicked}/>
+
       <div>
         <ul>
-          {notes.map(note => {
-            return (<li>{note}</li>)
+          {notes.map((note,index) => {
+            return (<TodoItem
+              key = {index}
+              id = {index}
+              text = {note}
+              delClicked = {deleteFunc}
+            />
+            )
           })}
         </ul>
       </div>
+
     </div>
   );
 }
