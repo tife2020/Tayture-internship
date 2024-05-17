@@ -6,7 +6,7 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-function GameBoard() {
+function GameBoard({onSelectSquare,activePlayerSymbol}) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   function handleSelectedSquare(rowIndex,colIndex) {
@@ -36,11 +36,14 @@ function GameBoard() {
       console.log(updatedGameBoard2);
       console.log(updatedGameBoard); //the console.log output of the 2 are the same the difference is in the explanation above
 
-      updatedGameBoard[rowIndex][colIndex] = 'X'
-
+      
+      updatedGameBoard[rowIndex][colIndex] = activePlayerSymbol
+      
+      
       return updatedGameBoard
-
+      
     });
+    onSelectSquare()
   }
   return (
     <ol id="game-board">
