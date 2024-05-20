@@ -1,24 +1,19 @@
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
+// const initialGameBoard = [
+//   [null, null, null],
+//   [null, null, null],
+//   [null, null, null],
+// ];
 
-function GameBoard({onSelectSquare, turns}) {
+function GameBoard({onSelectSquare,board}) {
 
-  let gameBoard = initialGameBoard;
+  // let gameBoard = initialGameBoard;
 
-  for (const turn of turns){
-    const {square, player} = turn;
-    const {row , col} = square
+  // for (const turn of turns){
+  //   const {square, player} = turn;
+  //   const {row , col} = square
 
-    gameBoard[row][col] = player
-  }
-
-
-
-
-
+  //   gameBoard[row][col] = player
+  // }
 
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
@@ -60,7 +55,7 @@ function GameBoard({onSelectSquare, turns}) {
   // }
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
