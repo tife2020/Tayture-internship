@@ -3,21 +3,38 @@ import GameBoard from "./component/GameBoard";
 import Player from "./component/Player";
 import Log from "./component/log";
 
+function setActivePlayer(gameTurns) {
+  let activePlayer = "X";
+
+  gameTurns.length > 0 && gameTurns[0].player === "X"
+    ? (activePlayer = "O")
+    : (activePlayer = "X");
+
+  return activePlayer;
+}
+
 function App() {
-  const [activePlayer, setActivePlayer] = useState("X");
+  // const [activePlayer, setActivePlayer] = useState("X");
   const [gameTurns, setGameTurns] = useState([]);
 
-  function handleSelectSquare(rowIndex, colIndex) {
-    setActivePlayer((curActivePlayer) => {
-      return curActivePlayer === "X" ? "O" : "X";
-    });
+  let activePlayer = setActivePlayer(gameTurns);
 
-    let currPlayer = "X";
+  // function handleSelectSquare(rowIndex, colIndex) {
+  //   setActivePlayer((curActivePlayer) => {
+  //     return curActivePlayer === "X" ? "O" : "X";
+  //   });
+
+  function handleSelectSquare(rowIndex, colIndex) {
+
+    // let currPlayer = "X";
 
     setGameTurns((prevTurns) => {
-      prevTurns.length > 0 && prevTurns[0].player === "X"
-        ? (currPlayer = "O")
-        : (currPlayer = "X");
+
+      let currPlayer = setActivePlayer(prevTurns)
+      // prevTurns.length > 0 && prevTurns[0].player === "X"
+      //   ? (currPlayer = "O")
+      //   : (currPlayer = "X");
+
       const updatedTurns = [
         {
           square: { row: rowIndex, col: colIndex },
@@ -29,7 +46,6 @@ function App() {
       return updatedTurns;
     });
   }
-
   return (
     <main>
       <div id="game-container">
@@ -51,7 +67,7 @@ function App() {
           turns={gameTurns}
         />
       </div>
-      <Log turns = {gameTurns}/>
+      <Log turns={gameTurns} />
     </main>
   );
 }
