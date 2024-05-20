@@ -3,6 +3,7 @@ import GameBoard from "./component/GameBoard";
 import Player from "./component/Player";
 import Log from "./component/log";
 import { WINNING_COMBINATIONS } from "./winning-combinations";
+import GameOver from "./component/GameOver";
 
 const initialGameBoard = [
   [null, null, null],
@@ -10,21 +11,23 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-function setActivePlayer(gameTurns) {
-  let activePlayer = "X";
 
-  gameTurns.length > 0 && gameTurns[0].player === "X"
-    ? (activePlayer = "O")
-    : (activePlayer = "X");
-
-  return activePlayer;
-}
 
 function App() {
   // const [activePlayer, setActivePlayer] = useState("X");
   const [gameTurns, setGameTurns] = useState([]);
 
-  let gameBoard = initialGameBoard;
+  let gameBoard = [...initialGameBoard.map(innerArr => [...innerArr])];
+
+  function setActivePlayer(gameTurns) {
+    let activePlayer = "X";
+  
+    gameTurns.length > 0 && gameTurns[0].player === "X"
+      ? (activePlayer = "O")
+      : (activePlayer = "X");
+  
+    return activePlayer;
+  }
 
   let activePlayer = setActivePlayer(gameTurns);
 
@@ -79,7 +82,16 @@ function App() {
       winner = firstSymbol;
     }
   }
+
+  // this is to check for Match Draw
+  let draw = gameTurns.length === 9 && !winner
+
+
+  function handleRematch(){
+    setGameTurns([])
+  }
   
+
   return (
     <main>
       <div id="game-container">
@@ -95,7 +107,7 @@ function App() {
             isActive={activePlayer === "O"}
           />
         </ol>
-        {winner && <p>You won {winner}</p>}
+        {(winner || draw) && <GameOver winner = {winner} onClick = {handleRematch}/>}
         <GameBoard
           onSelectSquare={handleSelectSquare}
           activePlayerSymbol={activePlayer}
