@@ -7,7 +7,7 @@ function App() {
     initialInvestment: 0,
     annualInvestment: 0,
     expectedReturn: 0,
-    duration: 0,
+    duration: 1,
   });
 
   function handleChange(event) {
@@ -22,7 +22,8 @@ function App() {
   return (
     <>
       <InputArea handleChange={handleChange} inputValues={inputValues}/>
-      <Result inputValues ={inputValues}/>
+
+      {inputValues['duration'] < 1 ?<p className="center">Duration must be greater than 0</p> :<Result inputValues ={inputValues}/>}
     </>
   )
 }
