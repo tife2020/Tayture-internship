@@ -6,7 +6,6 @@ function Result({ inputValues }) {
   const annualData = calculateInvestmentResults(inputValues);
 
 
-  console.log(annualData);
   return (
     <table id="result">
       <thead>
@@ -21,7 +20,7 @@ function Result({ inputValues }) {
       <tbody>
       {}
         {annualData.map((data) => (
-          <tr>
+          <tr key={data.year}>
             <td>{data.year}</td>
             <td>{formatter.format(data.valueEndOfYear)}</td>
             <td>{formatter.format(data.interest)}</td>

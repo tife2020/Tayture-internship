@@ -22,7 +22,6 @@ const inputLabels = [
 
 function InputArea({handleChange,inputValues}) {
 
-  console.log(inputValues);
   return (
     <div id="user-input">
       <div className="input-group">
