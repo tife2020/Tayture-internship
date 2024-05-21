@@ -1,6 +1,6 @@
 import React from 'react'
 
-function GameOver({winner, onClick}) {
+function GameOver({winner, onClick, playersName}) {
   return (
     <div id='game-over'>
     <h2>Game Over!</h2>
