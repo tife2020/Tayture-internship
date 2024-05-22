@@ -20,11 +20,14 @@ export default function AuthInputs() {
   const emailNotValid = submitted && !enteredEmail.includes('@');
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
+  const labelStyle = {
+    color: 'red',
+  }
   return (
     <div id="auth-inputs">
       <div className="controls">
         <p>
-          <label>Email</label>
+          <label style={labelStyle}>Email</label>
           <input
             type="email"
             className={emailNotValid ? 'invalid' : undefined}
