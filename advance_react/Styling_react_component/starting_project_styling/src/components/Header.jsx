@@ -10,6 +10,11 @@ const HeaderCont = styled.header`
   margin-top: 2rem;
   margin-bottom: 2rem;
 
+  &:hover{
+    transform: scaleY(1.05);
+    transition: all 200ms ease-in-out;
+  }
+
   & img {
     object-fit: contain;
     margin-bottom: 2rem;
