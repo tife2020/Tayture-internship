@@ -19,7 +19,7 @@ export default function Player() {
         <button onClick={handleClick}>Set Name</button>
       </p>
       {/* making a button trigger the click action in another element (input type = 'file')  Start*/}
-      <p
+      {/* <p
         style={{
           borderRadius: "50%",
           height: "100px",
@@ -44,7 +44,7 @@ export default function Player() {
         >
           upload
         </button>
-      </p>
+      </p> */}
       {/* END */}
     </section>
   );
