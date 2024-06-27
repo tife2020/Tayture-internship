@@ -6,7 +6,7 @@ function TimerChallenge({ title, targetTime }) {
   // const [timerExpired, setTimerExpired] = useState(false);
   // const [timerStarted, setTimerStarted] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(targetTime * 1000);
-  const [timerIsActive, setTimerIsActive] = useState(false)
+  // const [timerIsActive, setTimerIsActive] = useState(false)
 
   const dialog = useRef();
   let timer = useRef();
@@ -21,33 +21,32 @@ function TimerChallenge({ title, targetTime }) {
     setTimerStarted(true);
   }
 */
-  // let timerIsActive = timeRemaining > 0 && timeRemaining < targetTime * 1000;
+  let timerIsActive = timeRemaining > 0 && timeRemaining < targetTime * 1000;
 
   // time is up
   if (timeRemaining <= 0) {
     clearInterval(timer.current);
-    setTimerIsActive(false)
     dialog.current.openModal();
-    setTimeRemaining(targetTime*1000)
   }
 
   function handleStart() {
     timer.current = setInterval(() => {
       setTimeRemaining((prevTime) => prevTime - 10);
-
     }, 10);
-    setTimerIsActive(true)
   }
 
   function handleStop() {
     clearInterval(timer.current);
     dialog.current.openModal();
-    setTimerIsActive(false)
+  }
+
+  function resetTime(){
+    setTimeRemaining(targetTime * 1000);
   }
 
   return (
     <>
-      <ResultModal ref={dialog} targetTIme={targetTime} result="lost" />
+      <ResultModal ref={dialog} targetTIme={targetTime} result="lost"  timeRemaining = {timeRemaining} resetTime = {resetTime}/>
       <section className="challenge">
         <h2>{title}</h2>
         <p className="challenge-time">
