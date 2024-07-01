@@ -6,6 +6,7 @@ import ProjectTask from "./components/ProjectTask";
 
 function App() {
   const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState("");
   const [rightSideItem, setRightSideItem] = useState("rightSideDefault");
 
   const rightSideContents = {
@@ -17,14 +18,14 @@ function App() {
         setProjects={setProjects}
       />
     ),
-    projectTask: <ProjectTask projects={projects} setProjects={setProjects} />,
+    projectTask: <ProjectTask projects={projects} setProjects={setProjects} selectedProject={selectedProject} setRightSideItem={setRightSideItem}/>,
   };
 
 
   return (
     <>
       <div className="flex">
-        <LeftSide setRightSideItem={setRightSideItem} projects={projects} />
+        <LeftSide setRightSideItem={setRightSideItem} projects={projects} setSelectedProject={setSelectedProject}/>
         {rightSideContents[rightSideItem]}
       </div>
     </>

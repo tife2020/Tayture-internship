@@ -17,7 +17,7 @@ function RightSideDefault({setRightSideItem}) {
       <p className="text-neutral-400 text-2xl ">
         Select a project or get started with a new one{" "}
       </p>
-      <button onClick = {handleCreateBtn} className="bg-neutral-700 text-xl font-normal px-7 py-4 rounded-lg mt-5 text-neutral-300 ">
+      <button onClick = {handleCreateBtn} className="bg-neutral-700 hover:bg-neutral-800 text-xl font-normal px-7 py-4 rounded-lg mt-5 text-neutral-300 ">
         Create new project
       </button>
     </RightSideCont>

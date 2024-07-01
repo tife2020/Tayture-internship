@@ -12,6 +12,7 @@ function CreateProject({ setRightSideItem, projects, setProjects }) {
             description: description.current.value,
             date: date.current.value,
             tasks: [],
+            id: prevProject.length,
           },
         ];
       } else {
@@ -22,7 +23,8 @@ function CreateProject({ setRightSideItem, projects, setProjects }) {
             description: description.current.value,
             date: date.current.value,
             tasks: [],
-          }
+            id: prevProject.length,
+          },
         ];
       }
     });
@@ -30,9 +32,17 @@ function CreateProject({ setRightSideItem, projects, setProjects }) {
 
   function handleSave(event) {
     event.preventDefault();
-    setRightSideItem("rightSideDefault");
-    saveProject();
-    console.log(projects);
+    if (
+      title.current.value &&
+      description.current.value &&
+      date.current.value
+    ) {
+      setRightSideItem("rightSideDefault");
+      saveProject();
+      console.log(projects);
+    } else {
+      alert("All fields must be filled");
+    }
   }
   function handleCancel(event) {
     event.preventDefault();
@@ -49,13 +59,13 @@ function CreateProject({ setRightSideItem, projects, setProjects }) {
         <div className="flex justify-end w-full items-baseline gap-4">
           <button
             onClick={handleCancel}
-            className="font-medium  rounded-lg mt-5 text-neutral-700 "
+            className="font-medium  rounded-lg mt-5 text-neutral-700 hover:text-red-500 "
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
-            className="bg-neutral-800 font-medium px-7	 py-2 rounded-lg text-white "
+            className="bg-neutral-700 hover:bg-neutral-800 font-medium px-7	 py-2 rounded-lg text-white "
           >
             Save
           </button>
