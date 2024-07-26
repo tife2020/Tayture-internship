@@ -1,9 +1,11 @@
 import React from "react";
 import RightSideCont from "./RightSideCont";
+import ErrorModal from "./ErrorModal";
 
 
 
 function RightSideDefault({setRightSideItem}) {
+  
   function handleCreateBtn (){
     setRightSideItem('createProject');
   }
